@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - Rooms & Infrastructure</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+    <main class="app-content">
+        <div class="page-header">
+            <h1 class="page-title">Classrooms & Labs</h1>
+            <p class="page-subtitle">Campus infrastructure and room allocations</p>
+        </div>
+        <div class="content-card">
+            <div class="table-responsive">
+                <table class="app-table">
+                    <thead>
+                        <tr><th>Room No</th><th>Block</th><th>Capacity</th><th>Type</th><th>Current Status</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>C101</td><td>Block C</td><td>60</td><td>Lecture Hall</td><td><span class="badge badge-approved">Available</span></td></tr>
+                        <tr><td>C102</td><td>Block C</td><td>60</td><td>Lecture Hall</td><td><span class="badge badge-approved">Available</span></td></tr>
+                        <tr><td>C103</td><td>Block C</td><td>60</td><td>Smart Classroom</td><td><span class="badge badge-approved">Available</span></td></tr>
+                        <tr><td>Lab 2</td><td>Block B</td><td>40</td><td>Computer Lab</td><td><span class="badge badge-approved">Available</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

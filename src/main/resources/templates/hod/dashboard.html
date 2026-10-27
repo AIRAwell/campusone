@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - HOD Dashboard</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+
+<div th:replace="~{fragments/layout :: navbar}"></div>
+
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+
+    <main class="app-content">
+        <!-- Page Header (Screen 4) -->
+        <div class="page-header">
+            <h1 class="page-title">HOD Dashboard</h1>
+            <p class="page-subtitle" th:text="'Welcome back, ' + ${username} + '!'">Welcome back, hod1!</p>
+        </div>
+
+        <!-- 3 Stat Cards (Screen 4) -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-label">Faculty</div>
+                    <div class="stat-value" th:text="${facultyCount}">6</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon green">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-label">Students</div>
+                    <div class="stat-value" th:text="${studentCount}">120</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon purple">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-label">Pending Approvals</div>
+                    <div class="stat-value" th:text="${pendingApprovalsCount}">2</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Split Grid (Screen 4) -->
+        <div class="dashboard-split-grid">
+            <!-- Left Card: Department Reports -->
+            <div class="content-card">
+                <div class="card-header-row">
+                    <h2 class="card-title">Department Reports</h2>
+                </div>
+                <div class="report-item-list">
+                    <a th:href="@{/hod/reports}" class="report-item">
+                        <span>Attendance Report</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </a>
+                    <a th:href="@{/hod/reports}" class="report-item">
+                        <span>Assignment Report</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </a>
+                    <a th:href="@{/hod/attendance-performance}" class="report-item">
+                        <span>Student Performance</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </a>
+                    <a th:href="@{/hod/attendance-performance}" class="report-item">
+                        <span>Faculty Performance</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Card: Recent Requests -->
+            <div class="content-card">
+                <div class="card-header-row">
+                    <h2 class="card-title">Recent Requests</h2>
+                    <a th:href="@{/hod/approve-requests}" class="card-action-link">View All</a>
+                </div>
+                <div class="announcement-list">
+                    <div class="announcement-item" th:each="req : ${recentRequests}" style="justify-content: space-between;">
+                        <div style="display: flex; align-items: flex-start; gap: 12px;">
+                            <div class="announcement-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+                            </div>
+                            <div class="announcement-item-content">
+                                <h4 th:text="${req.requestType + ' Request - ' + req.studentName}">Leave Request - John Doe</h4>
+                                <span th:text="${req.reason}">Personal</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span th:if="${req.status == 'Pending'}" class="badge badge-pending">Pending</span>
+                            <span th:if="${req.status == 'Approved'}" class="badge badge-approved">Approved</span>
+                            <span th:if="${req.status == 'Rejected'}" class="badge badge-rejected">Rejected</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>

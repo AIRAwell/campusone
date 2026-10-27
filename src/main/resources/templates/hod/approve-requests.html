@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - Approve Requests</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+    <main class="app-content">
+        <div class="page-header">
+            <h1 class="page-title">Approve Leave & OD Requests</h1>
+            <p class="page-subtitle">Review, approve, or reject student requests</p>
+        </div>
+
+        <div th:if="${param.updated}" class="alert-success">
+            Request status updated successfully!
+        </div>
+
+        <div class="content-card">
+            <div class="table-responsive">
+                <table class="app-table">
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Reason</th>
+                            <th>Status</th>
+                            <th>Decision Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="req : ${requests}">
+                            <td th:text="${req.studentName}">John Doe</td>
+                            <td th:text="${req.requestDate}">2025-06-15</td>
+                            <td th:text="${req.requestType}">Leave</td>
+                            <td th:text="${req.reason}">Personal</td>
+                            <td>
+                                <span th:if="${req.status == 'Pending'}" class="badge badge-pending">Pending</span>
+                                <span th:if="${req.status == 'Approved'}" class="badge badge-approved">Approved</span>
+                                <span th:if="${req.status == 'Rejected'}" class="badge badge-rejected">Rejected</span>
+                            </td>
+                            <td>
+                                <div th:if="${req.status == 'Pending'}" style="display: flex; gap: 8px;">
+                                    <form th:action="@{'/hod/requests/' + ${req.id} + '/approve'}" method="post" style="display: inline;">
+                                        <button type="submit" class="btn-action-outline" style="border-color: #16a34a; color: #16a34a;">Approve</button>
+                                    </form>
+                                    <form th:action="@{'/hod/requests/' + ${req.id} + '/reject'}" method="post" style="display: inline;">
+                                        <button type="submit" class="btn-action-outline" style="border-color: #dc2626; color: #dc2626;">Reject</button>
+                                    </form>
+                                </div>
+                                <span th:unless="${req.status == 'Pending'}" style="color: var(--text-muted); font-size: 0.85rem;">Completed</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

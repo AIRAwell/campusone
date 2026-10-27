@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - Attendance Performance</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+    <main class="app-content">
+        <div class="page-header">
+            <h1 class="page-title">Attendance Performance Analysis</h1>
+            <p class="page-subtitle">Department-level student attendance and shortage monitoring</p>
+        </div>
+        <div class="content-card">
+            <div class="table-responsive">
+                <table class="app-table">
+                    <thead>
+                        <tr><th>Student Name</th><th>Roll No</th><th>Semester</th><th>Attendance %</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>student1</td><td>CS001</td><td>Sem 5</td><td>85%</td><td><span class="badge badge-approved">Eligible</span></td></tr>
+                        <tr><td>John Doe</td><td>CS002</td><td>Sem 5</td><td>78%</td><td><span class="badge badge-approved">Eligible</span></td></tr>
+                        <tr><td>Priya S</td><td>CS003</td><td>Sem 5</td><td>92%</td><td><span class="badge badge-approved">Eligible</span></td></tr>
+                        <tr><td>Rahul K</td><td>CS004</td><td>Sem 5</td><td>68%</td><td><span class="badge badge-rejected">Shortage</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

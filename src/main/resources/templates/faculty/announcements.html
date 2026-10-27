@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - Faculty Announcements</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+    <main class="app-content">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+            <h1 class="page-title" style="margin-bottom: 0;">Faculty Announcements</h1>
+            <button type="button" class="btn-primary" onclick="openNoticeModal()">+ Post Announcement</button>
+        </div>
+
+        <div th:if="${param.posted}" class="alert-success">
+            Announcement published successfully!
+        </div>
+
+        <div class="announcement-cards-stack">
+            <div th:each="item : ${announcements}" 
+                 class="announcement-accent-card"
+                 th:classappend="${item.colorTag == 'RED' ? 'red' : (item.colorTag == 'YELLOW' ? 'yellow' : (item.colorTag == 'GREEN' ? 'green' : (item.colorTag == 'PURPLE' ? 'purple' : 'blue')))}">
+                <h3 th:text="${item.title}">Lab session cancelled tomorrow</h3>
+                <p class="meta" th:text="'Posted by ' + ${item.postedByRole} + ' &bull; ' + ${item.timeAgo}">Posted by Faculty • 1 hour ago</p>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Modal for Post Announcement -->
+<div id="noticeModal" class="modal-overlay">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h3>Post New Announcement</h3>
+            <button type="button" class="modal-close" onclick="closeNoticeModal()">&times;</button>
+        </div>
+        <form th:action="@{/faculty/announcements}" method="post">
+            <div class="form-group">
+                <label class="form-label">Announcement Title</label>
+                <input type="text" name="title" class="form-control" placeholder="e.g. Extra class scheduled for Saturday" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Category / Color Accent</label>
+                <select name="colorTag" class="form-control">
+                    <option value="BLUE">Information (Blue)</option>
+                    <option value="YELLOW">Notice / Reminder (Yellow)</option>
+                    <option value="RED">Urgent (Red)</option>
+                    <option value="GREEN">Event / Achievement (Green)</option>
+                    <option value="PURPLE">Academic (Purple)</option>
+                </select>
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+                <button type="button" class="btn-action-outline" onclick="closeNoticeModal()">Cancel</button>
+                <button type="submit" class="btn-primary">Publish</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openNoticeModal() { document.getElementById('noticeModal').style.display = 'flex'; }
+    function closeNoticeModal() { document.getElementById('noticeModal').style.display = 'none'; }
+</script>
+</body>
+</html>

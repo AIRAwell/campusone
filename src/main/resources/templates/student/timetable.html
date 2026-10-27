@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - Timetable</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+
+<div th:replace="~{fragments/layout :: navbar}"></div>
+
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+
+    <main class="app-content">
+        <!-- Page Header & Filter Bar (Screen 6) -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+            <h1 class="page-title" style="margin-bottom: 0;">Timetable</h1>
+            <div class="filter-bar" style="margin-bottom: 0;">
+                <button type="button" class="btn-filter-today" onclick="document.getElementById('dateInput').value='2025-06-12'">Today</button>
+                <input type="date" id="dateInput" class="input-date" th:value="${selectedDate}">
+            </div>
+        </div>
+
+        <!-- Timetable Table Card (Screen 6) -->
+        <div class="content-card">
+            <div class="table-responsive">
+                <table class="app-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Subject</th>
+                            <th>Faculty</th>
+                            <th>Room</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="entry : ${timetableList}">
+                            <td th:text="${entry.timeRange}">09:00 - 10:00</td>
+                            <td th:text="${entry.subject}">Data Structures</td>
+                            <td th:text="${entry.facultyName}">Dr. Smith</td>
+                            <td th:text="${entry.room}">C101</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>

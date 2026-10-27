@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - Upload Notes</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+    <main class="app-content">
+        <div class="page-header">
+            <h1 class="page-title">Upload Notes</h1>
+            <p class="page-subtitle">Share course materials and assignments with students</p>
+        </div>
+        <div class="content-card" style="max-width: 600px;">
+            <form onsubmit="alert('Notes uploaded successfully!'); return false;">
+                <div class="form-group">
+                    <label class="form-label">Subject</label>
+                    <select class="form-control" required>
+                        <option>CS201 - Data Structures</option>
+                        <option>CS202 - Web Technology</option>
+                        <option>CS203 - Database Systems</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Topic / Chapter Title</label>
+                    <input type="text" class="form-control" placeholder="e.g. Unit 4 - Graph Algorithms & Traversal" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Select File (PDF, PPT, DOCX)</label>
+                    <input type="file" class="form-control" required>
+                </div>
+                <button type="submit" class="btn-primary" style="margin-top: 10px;">Upload Material</button>
+            </form>
+        </div>
+    </main>
+</div>
+</body>
+</html>

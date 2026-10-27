@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - Mark Attendance</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+    <main class="app-content">
+        <div class="page-header">
+            <h1 class="page-title">Mark Attendance</h1>
+            <p class="page-subtitle">Select class and date to record attendance</p>
+        </div>
+        <div class="content-card" style="margin-bottom: 24px;">
+            <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-end;">
+                <div style="flex: 1; min-width: 200px;">
+                    <label class="form-label">Select Subject</label>
+                    <select class="form-control">
+                        <option>CS201 - Data Structures (Section A)</option>
+                        <option>CS202 - Web Technology (Section B)</option>
+                        <option>CS203 - Database Systems (Section A)</option>
+                    </select>
+                </div>
+                <div style="flex: 1; min-width: 160px;">
+                    <label class="form-label">Session Date</label>
+                    <input type="date" class="form-control" value="2025-06-12">
+                </div>
+                <div>
+                    <button class="btn-primary" onclick="alert('Attendance loaded successfully!')">Load Students</button>
+                </div>
+            </div>
+        </div>
+        <div class="content-card">
+            <div class="card-header-row">
+                <h2 class="card-title">Student Roll List (Section A)</h2>
+                <button class="btn-primary" onclick="alert('Attendance saved successfully!')">Save Attendance</button>
+            </div>
+            <div class="table-responsive">
+                <table class="app-table">
+                    <thead>
+                        <tr><th>Roll No</th><th>Student Name</th><th>Department</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>CS001</td><td>student1</td><td>Computer Science</td><td><input type="radio" name="s1" checked> Present &nbsp; <input type="radio" name="s1"> Absent</td></tr>
+                        <tr><td>CS002</td><td>John Doe</td><td>Computer Science</td><td><input type="radio" name="s2" checked> Present &nbsp; <input type="radio" name="s2"> Absent</td></tr>
+                        <tr><td>CS003</td><td>Priya S</td><td>Computer Science</td><td><input type="radio" name="s3" checked> Present &nbsp; <input type="radio" name="s3"> Absent</td></tr>
+                        <tr><td>CS004</td><td>Rahul K</td><td>Computer Science</td><td><input type="radio" name="s4" checked> Present &nbsp; <input type="radio" name="s4"> Absent</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - Department Reports</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+    <main class="app-content">
+        <div class="page-header">
+            <h1 class="page-title">Department Reports</h1>
+            <p class="page-subtitle">Department of Computer Science & Engineering</p>
+        </div>
+        <div class="dashboard-split-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 24px;">
+            <div class="content-card">
+                <h3 class="card-title" style="margin-bottom: 12px;">Attendance Overview</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px;">Average Department Attendance: <strong>88.4%</strong></p>
+                <div class="table-responsive">
+                    <table class="app-table">
+                        <thead><tr><th>Semester</th><th>Enrolled</th><th>Avg Attendance</th></tr></thead>
+                        <tbody>
+                            <tr><td>Semester 3</td><td>60</td><td>91.2%</td></tr>
+                            <tr><td>Semester 5</td><td>60</td><td>85.6%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="content-card">
+                <h3 class="card-title" style="margin-bottom: 12px;">Assignment Submission Rate</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px;">Overall Submission Rate: <strong>94.2%</strong></p>
+                <div class="table-responsive">
+                    <table class="app-table">
+                        <thead><tr><th>Course</th><th>Total</th><th>Submitted</th></tr></thead>
+                        <tbody>
+                            <tr><td>Data Structures</td><td>60</td><td>58</td></tr>
+                            <tr><td>Web Technology</td><td>60</td><td>56</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

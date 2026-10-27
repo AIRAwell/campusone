@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - Announcements</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+
+<div th:replace="~{fragments/layout :: navbar}"></div>
+
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+
+    <main class="app-content">
+        <div class="page-header">
+            <h1 class="page-title">Announcements</h1>
+        </div>
+
+        <!-- Color-Coded Announcement Cards Stack (Screen 7) -->
+        <div class="announcement-cards-stack">
+            <div th:each="item : ${announcements}" 
+                 class="announcement-accent-card"
+                 th:classappend="${item.colorTag == 'RED' ? 'red' : (item.colorTag == 'YELLOW' ? 'yellow' : (item.colorTag == 'GREEN' ? 'green' : (item.colorTag == 'PURPLE' ? 'purple' : 'blue')))}">
+                <h3 th:text="${item.title}">College will remain closed on Friday</h3>
+                <p class="meta" th:text="'Posted by ' + ${item.postedByRole} + ' &bull; ' + ${item.timeAgo}">Posted by Admin • 2 hours ago</p>
+            </div>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>

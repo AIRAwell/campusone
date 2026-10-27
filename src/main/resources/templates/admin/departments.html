@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - Departments</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+    <main class="app-content">
+        <div class="page-header">
+            <h1 class="page-title">Departments</h1>
+            <p class="page-subtitle">College departments, staff count, and enrolled students</p>
+        </div>
+        <div class="content-card">
+            <div class="table-responsive">
+                <table class="app-table">
+                    <thead>
+                        <tr><th>Code</th><th>Department Name</th><th>Head of Department</th><th>Faculty</th><th>Students</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="d : ${departments}">
+                            <td th:text="${d.code}">CSE</td>
+                            <td th:text="${d.name}">Computer Science & Engineering</td>
+                            <td th:text="${d.hodName}">hod1</td>
+                            <td th:text="${d.facultyCount}">6</td>
+                            <td th:text="${d.studentCount}">120</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

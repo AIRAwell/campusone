@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - Leave / OD Requests</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+
+<div th:replace="~{fragments/layout :: navbar}"></div>
+
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+
+    <main class="app-content">
+        <!-- Page Header with + New Request Button (Screen 8) -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+            <h1 class="page-title" style="margin-bottom: 0;">Leave / OD Requests</h1>
+            <button type="button" class="btn-primary" onclick="openNewRequestModal()">+ New Request</button>
+        </div>
+
+        <div th:if="${param.success}" class="alert-success">
+            Your request has been submitted successfully and is pending approval.
+        </div>
+
+        <!-- Requests Table Card (Screen 8) -->
+        <div class="content-card">
+            <div class="table-responsive">
+                <table class="app-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Reason</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="req : ${requests}">
+                            <td th:text="${req.requestDate}">2025-06-15</td>
+                            <td th:text="${req.requestType}">Leave</td>
+                            <td th:text="${req.reason}">Personal</td>
+                            <td>
+                                <span th:if="${req.status == 'Pending'}" class="badge badge-pending">Pending</span>
+                                <span th:if="${req.status == 'Approved'}" class="badge badge-approved">Approved</span>
+                                <span th:if="${req.status == 'Rejected'}" class="badge badge-rejected">Rejected</span>
+                            </td>
+                            <td>
+                                <button type="button" class="btn-action-outline" 
+                                        th:attr="onclick='viewDetails(\'' + ${req.requestDate} + '\', \'' + ${req.requestType} + '\', \'' + ${req.reason} + '\', \'' + ${req.status} + '\')'">
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Modal for New Request -->
+<div id="newRequestModal" class="modal-overlay">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h3>New Leave / OD Request</h3>
+            <button type="button" class="modal-close" onclick="closeNewRequestModal()">&times;</button>
+        </div>
+        <form th:action="@{/student/leave-requests}" method="post">
+            <div class="form-group">
+                <label class="form-label">Request Date</label>
+                <input type="date" name="date" class="form-control" value="2025-06-16" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Request Type</label>
+                <select name="type" class="form-control" required>
+                    <option value="Leave">Leave</option>
+                    <option value="OD">On-Duty (OD)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Reason</label>
+                <input type="text" name="reason" class="form-control" placeholder="e.g. Medical, Personal, Hackathon, Symposium" required>
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+                <button type="button" class="btn-action-outline" onclick="closeNewRequestModal()">Cancel</button>
+                <button type="submit" class="btn-primary">Submit Request</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal for View Request Details -->
+<div id="viewModal" class="modal-overlay">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h3>Request Details</h3>
+            <button type="button" class="modal-close" onclick="closeViewModal()">&times;</button>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+            <div><strong>Date:</strong> <span id="viewDate"></span></div>
+            <div><strong>Type:</strong> <span id="viewType"></span></div>
+            <div><strong>Reason:</strong> <span id="viewReason"></span></div>
+            <div><strong>Status:</strong> <span id="viewStatus"></span></div>
+        </div>
+        <div style="text-align: right;">
+            <button type="button" class="btn-primary" onclick="closeViewModal()">Close</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openNewRequestModal() {
+        document.getElementById('newRequestModal').style.display = 'flex';
+    }
+    function closeNewRequestModal() {
+        document.getElementById('newRequestModal').style.display = 'none';
+    }
+    function viewDetails(date, type, reason, status) {
+        document.getElementById('viewDate').innerText = date;
+        document.getElementById('viewType').innerText = type;
+        document.getElementById('viewReason').innerText = reason;
+        document.getElementById('viewStatus').innerText = status;
+        document.getElementById('viewModal').style.display = 'flex';
+    }
+    function closeViewModal() {
+        document.getElementById('viewModal').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>

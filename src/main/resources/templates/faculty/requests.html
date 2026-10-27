@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - Student Requests</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+    <main class="app-content">
+        <div class="page-header">
+            <h1 class="page-title">Student Leave / OD Requests</h1>
+            <p class="page-subtitle">View authorized student leave and on-duty requests</p>
+        </div>
+        <div class="content-card">
+            <div class="table-responsive">
+                <table class="app-table">
+                    <thead>
+                        <tr><th>Student</th><th>Date</th><th>Type</th><th>Reason</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="r : ${requests}">
+                            <td th:text="${r.studentName}">John Doe</td>
+                            <td th:text="${r.requestDate}">2025-06-15</td>
+                            <td th:text="${r.requestType}">Leave</td>
+                            <td th:text="${r.reason}">Personal</td>
+                            <td>
+                                <span th:if="${r.status == 'Pending'}" class="badge badge-pending">Pending</span>
+                                <span th:if="${r.status == 'Approved'}" class="badge badge-approved">Approved</span>
+                                <span th:if="${r.status == 'Rejected'}" class="badge badge-rejected">Rejected</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

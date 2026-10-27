@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - Faculty Profile</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+    <main class="app-content">
+        <div class="page-header">
+            <h1 class="page-title">Faculty Profile</h1>
+            <p class="page-subtitle">View your staff and departmental details</p>
+        </div>
+        <div class="content-card" style="max-width: 600px;">
+            <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 24px;">
+                <div class="navbar-avatar" style="width: 64px; height: 64px; background-color: var(--blue-icon-bg); color: var(--blue-icon-color);">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h2 style="font-size: 1.25rem; font-weight: 700;" th:text="${user != null ? user.fullName : username}">faculty1</h2>
+                    <span style="font-size: 0.85rem; color: var(--text-muted);" th:text="${role}">Faculty</span>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 14px; font-size: 0.95rem;">
+                <div><strong>Staff ID:</strong> <span>FAC-2021-042</span></div>
+                <div><strong>Designation:</strong> <span>Assistant Professor</span></div>
+                <div><strong>Department:</strong> <span th:text="${user != null ? user.department : 'Computer Science & Engineering'}">Computer Science</span></div>
+                <div><strong>Email:</strong> <span th:text="${user != null ? user.email : username + '@campusone.edu'}">faculty1@campusone.edu</span></div>
+                <div><strong>Allocated Courses:</strong> <span>Data Structures (CS201), Web Technology (CS202)</span></div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - Manage Faculty</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+    <main class="app-content">
+        <div class="page-header">
+            <h1 class="page-title">Manage Faculty</h1>
+            <p class="page-subtitle">Faculty members allocated to Computer Science Department</p>
+        </div>
+        <div class="content-card">
+            <div class="table-responsive">
+                <table class="app-table">
+                    <thead>
+                        <tr><th>Name</th><th>Username</th><th>Email</th><th>Role</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="f : ${facultyList}">
+                            <td th:text="${f.fullName}">Dr. Smith</td>
+                            <td th:text="${f.username}">drsmith</td>
+                            <td th:text="${f.email}">smith@campusone.edu</td>
+                            <td>Assistant Professor</td>
+                            <td><span class="badge badge-approved">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

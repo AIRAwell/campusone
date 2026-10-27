@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - Manage Timetable</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+    <main class="app-content">
+        <div class="page-header">
+            <h1 class="page-title">Department Timetable Master</h1>
+            <p class="page-subtitle">Schedule classes, rooms, and faculty allocations</p>
+        </div>
+        <div class="content-card">
+            <div class="table-responsive">
+                <table class="app-table">
+                    <thead>
+                        <tr><th>Time Slot</th><th>Subject</th><th>Faculty</th><th>Room</th><th>Day</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="entry : ${timetableList}">
+                            <td th:text="${entry.timeRange}">09:00 - 10:00</td>
+                            <td th:text="${entry.subject}">Data Structures</td>
+                            <td th:text="${entry.facultyName}">Dr. Smith</td>
+                            <td th:text="${entry.room}">C101</td>
+                            <td th:text="${entry.dayOfWeek}">Thursday</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - Enter Marks</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+    <main class="app-content">
+        <div class="page-header">
+            <h1 class="page-title">Enter Student Marks</h1>
+            <p class="page-subtitle">Record internal assessments, assignments, and test grades</p>
+        </div>
+        <div class="content-card">
+            <div class="card-header-row">
+                <h2 class="card-title">Internal Assessment 1 - Data Structures</h2>
+                <button class="btn-primary" onclick="alert('Marks saved successfully!')">Save Grades</button>
+            </div>
+            <div class="table-responsive">
+                <table class="app-table">
+                    <thead>
+                        <tr><th>Roll No</th><th>Student Name</th><th>Max Marks</th><th>Score Obtained</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>CS001</td><td>student1</td><td>50</td><td><input type="number" class="form-control" style="width: 90px;" value="44"></td></tr>
+                        <tr><td>CS002</td><td>John Doe</td><td>50</td><td><input type="number" class="form-control" style="width: 90px;" value="40"></td></tr>
+                        <tr><td>CS003</td><td>Priya S</td><td>50</td><td><input type="number" class="form-control" style="width: 90px;" value="47"></td></tr>
+                        <tr><td>CS004</td><td>Rahul K</td><td>50</td><td><input type="number" class="form-control" style="width: 90px;" value="38"></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

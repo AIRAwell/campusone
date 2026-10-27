@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - Events</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+    <main class="app-content">
+        <div class="page-header">
+            <h1 class="page-title">Campus Events</h1>
+            <p class="page-subtitle">College calendar, symposiums, and festivals</p>
+        </div>
+        <div class="content-card">
+            <div class="table-responsive">
+                <table class="app-table">
+                    <thead>
+                        <tr><th>Event Name</th><th>Date</th><th>Venue</th><th>Organizer</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Technical Fest 2025</td><td>2025-07-10</td><td>Main Auditorium</td><td>CSE Department</td><td><span class="badge badge-approved">Upcoming</span></td></tr>
+                        <tr><td>College Annual Day</td><td>2025-07-25</td><td>Campus Grounds</td><td>Administration</td><td><span class="badge badge-pending">Planning</span></td></tr>
+                        <tr><td>National AI Hackathon</td><td>2025-08-05</td><td>Tech Park Lab 1</td><td>Innovation Cell</td><td><span class="badge badge-approved">Upcoming</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

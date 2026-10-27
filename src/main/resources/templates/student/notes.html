@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CampusOne - Notes & Materials</title>
+    <th:block th:replace="~{fragments/layout :: header-assets}"></th:block>
+</head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="app-container">
+    <div th:replace="~{fragments/layout :: sidebar}"></div>
+    <main class="app-content">
+        <div class="page-header">
+            <h1 class="page-title">Lecture Notes & Study Materials</h1>
+            <p class="page-subtitle">Download uploaded lecture notes, PPTs, and reference materials</p>
+        </div>
+        <div class="content-card">
+            <div class="table-responsive">
+                <table class="app-table">
+                    <thead>
+                        <tr><th>Subject</th><th>Title</th><th>Uploaded By</th><th>Date</th><th>Action</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Data Structures</td><td>Unit 3 - Binary Search Trees & AVL.pdf</td><td>Dr. Smith</td><td>2025-06-08</td><td><button class="btn-action-outline">Download</button></td></tr>
+                        <tr><td>Web Technology</td><td>Lecture 8 - Responsive CSS Grid & Flexbox.pdf</td><td>Prof. Johnson</td><td>2025-06-09</td><td><button class="btn-action-outline">Download</button></td></tr>
+                        <tr><td>Database Systems</td><td>Unit 2 - Normalization & BCNF.pdf</td><td>Dr. Taylor</td><td>2025-06-10</td><td><button class="btn-action-outline">Download</button></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
